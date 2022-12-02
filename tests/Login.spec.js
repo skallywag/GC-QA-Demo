@@ -32,7 +32,7 @@ test("Valid Login Credentials", async ({ page }) => {
 
 test("Join Now Route", async ({ page }) => {
   await page.goto("https://www.greencompassdev.com/");
-  await page.getByRole("link", { name: "LOGIN" }).click();
+  await page.getByRole("link", { name: "LGIN" }).click();
   await page.getByRole("link", { name: "Join Now" }).click();
   await expect(page).toHaveURL(
     "https://www.greencompassdev.com/enrollment/become-an-associate"
