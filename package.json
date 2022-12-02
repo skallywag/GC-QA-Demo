@@ -1,0 +1,21 @@
+{
+  "name": "gc-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skallywag/GC-QA-Demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skallywag/GC-QA-Demo/issues"
+  },
+  "homepage": "https://github.com/skallywag/GC-QA-Demo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.28.1"
+  }
+}
