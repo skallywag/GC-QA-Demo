@@ -148,12 +148,38 @@ test.only("Interact with multiple tabs/windows", async ({ page }) => {
     "https://www.lambdatest.com/selenium-playground/window-popup-modal-demo"
   );
 
-  const [newWindow] = await Promise.all([
+  const [multiplePages] = await Promise.all([
     page.waitForEvent("popup"),
-    page.click("'Follow On Twitter'"),
+    page.click("#followboth"),
   ]);
 
-  console.log(newWindow.url());
+  // Wait for pages to load
+  await page.waitForLoadState();
+  // Returns number of pages open
+  const pages = multiplePages.context().pages();
+  // console.log("number of tabs open", pages.length);
+  pages.forEach((tab) => {
+    console.log(tab.url());
+  });
+
+  // Can now access each page and perform actions
+  await pages[1].locator("").fill("");
+
+  //Loop to save page objects to variables
+  let faceBookPage;
+  for (let index = 0; index < pages.length; count++) {
+    const url = pages[index].url();
+    if (url === "https://www.facebook.com/Lambdatest/") {
+      faceBookPage = pages[index];
+    }
+  }
+
+  // Opening a single tab
+  // const [newWindow] = await Promise.all([
+  //   page.waitForEvent("popup"),
+  //   page.click("'Follow On Twitter'"),
+  // ]);
+  // console.log(newWindow.url());
   // Can now use the new window object to perform actions in
   //ie: newWindow.locator("")
 });
