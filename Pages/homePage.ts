@@ -4,6 +4,9 @@ export default class HomePage {
   constructor(public page: Page) {}
 
   async clickSpecialNavBar() {
-    await this.page.click("(//span[contains(text(), 'Special')]/../..)[2]");
+    await Promise.all([
+      this.page.waitForNavigation({ waitUntil: "networkidle" }),
+      this.page.click("(//span[contains(text(), 'Special')]/../..)[2]"),
+    ]);
   }
 }

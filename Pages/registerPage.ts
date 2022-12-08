@@ -25,7 +25,6 @@ export default class RegisterPage {
   }
 
   async isSubscribedChecked() {
-    // return this.page.locator("#input-newsletter-no");
     return this.page.locator("#input-newsletter-no").isChecked();
   }
 

@@ -15,7 +15,7 @@ const config = {
   testMatch: ["pomTest/addToCart.spec.js"],
   // testDir: "./tests",
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 30 * 2000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
