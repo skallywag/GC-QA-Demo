@@ -143,7 +143,7 @@ test.skip("Iframe Interactions", async ({ page }) => {
   await page.waitForTimeout(5000);
 });
 
-test.only("Interact with multiple tabs/windows", async ({ page }) => {
+test.skip("Interact with multiple tabs/windows", async ({ page }) => {
   await page.goto(
     "https://www.lambdatest.com/selenium-playground/window-popup-modal-demo"
   );
@@ -183,3 +183,52 @@ test.only("Interact with multiple tabs/windows", async ({ page }) => {
   // Can now use the new window object to perform actions in
   //ie: newWindow.locator("")
 });
+
+test.skip("Calendar Interactions", async ({ page }) => {
+  await page.goto(
+    "https://www.lambdatest.com/selenium-playground/bootstrap-date-picker-demo"
+  );
+  // Accepted format may be different than UI format
+  // document.getElementById("").value to retrieve appected format
+  let date = 1991 - 8 - 14;
+  await page.locator("#birthday").fill(date);
+
+  await page.waitForTimeout(3000);
+});
+
+test.skip("Download Files", async ({ page }) => {
+  await page.goto(
+    "https://www.lambdatest.com/selenium-playground/generate-file-to-download-demo"
+  );
+  await page.type("#textbox", "File download playwright test");
+  await page.click("id=create");
+
+  const download = await Promise.all([
+    page.waitForEvent("download"),
+    page.click("id=link-to-download"),
+  ]);
+  // Get the path of download.
+  // Note: When test browser closes the downloaded files are deleted
+  // const path = await download[0].path();
+  // console.log(path);
+
+  const fileName = download[0].suggestedFilename();
+  download[0].saveAs(fileName);
+});
+
+test.only("Upload Files", async ({ page }) => {
+  await page.goto("https://blueimp.github.io/jQuery-File-Upload/");
+  // await page.setInputFiles("input[type=file]", ["imgUpload/suns.jpeg"]);
+
+  // Alternate way if element is masked using promis.all
+  const uploadFiles = await Promise.all([
+    page.waitForEvent("filechooser"),
+    page.click("input[type=file]"),
+  ]);
+
+  await uploadFiles.setFiles(["Upload", "Multiple", "files"]);
+
+  await page.waitForTimeout(3000);
+});
+
+// Page Object Model
