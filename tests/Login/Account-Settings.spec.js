@@ -34,6 +34,7 @@ test("test", async ({ page }) => {
     .getByRole("button", { name: "Edit" })
     .first()
     .click();
+  await page.g;
   await page.getByRole("button", { name: "Cancel" }).click();
   await page
     .locator("#form0 div")
